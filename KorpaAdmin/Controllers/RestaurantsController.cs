@@ -187,5 +187,142 @@ namespace KorpaAdmin.Controllers
 
             return View(restaurant);
         }
+
+
+        public IActionResult Menu(Guid? id)
+        {
+            HttpClient client = new HttpClient();
+            //added in next aud
+            string URL = "http://localhost:5153/api/Admin/GetMenu";
+            var model = new
+            {
+                Id = id
+            };
+
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.PostAsync(URL, content).Result;
+
+            var food_Items = response.Content.ReadAsAsync<List<Food_items>>().Result;
+            ViewData["RestaurantId"] = id;
+            return View(food_Items);
+        }
+
+        public IActionResult CreateFood(string id)
+        {
+            ViewData["RestaurantId"] = id;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateFood([Bind("Name,Image,Ingredients,Price,RestaurantId")] Food_items food_items)
+        {
+            if (ModelState.IsValid)
+            {
+                HttpClient client2 = new HttpClient();
+                string URL2 = "http://localhost:5153/api/Admin/CreateFoodItem";
+                var model2 = food_items;
+
+                HttpContent content2 = new StringContent(JsonConvert.SerializeObject(model2), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response2 = client2.PostAsync(URL2, content2).Result;
+
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(food_items);
+        }
+
+
+
+
+
+        public IActionResult EditFood(string id)
+        {
+            HttpClient client = new HttpClient();
+            //added in next aud
+            string URL = "http://localhost:5153/api/Admin/GetDetailsFood";
+            var model = new
+            {
+                Id = id
+            };
+
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.PostAsync(URL, content).Result;
+
+            var result = response.Content.ReadAsAsync<Food_items>().Result;
+
+
+            return View(result);
+        }       
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditFood(Guid id, [Bind("Name,Image,Ingredients,Price,Id")] Food_items food_items)
+        {
+            if (id != food_items.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                HttpClient client = new HttpClient();
+                //added in next aud
+                string URL = "http://localhost:5153/api/Admin/EditFood";
+                var model = food_items;
+
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = client.PostAsync(URL, content).Result;
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(food_items);
+        }
+
+        public IActionResult DeleteFood(string id)
+        {
+            HttpClient client = new HttpClient();
+            //added in next aud
+            string URL = "http://localhost:5153/api/Admin/GetDetailsFood";
+            var model = new
+            {
+                Id = id
+            };
+
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.PostAsync(URL, content).Result;
+
+            var result = response.Content.ReadAsAsync<Food_items>().Result;
+
+
+            return View(result);
+        }
+
+        [HttpPost, ActionName("DeleteFoodConf")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteFoodConf(Guid id)
+        {
+            HttpClient client = new HttpClient();
+            //added in next aud
+            string URL = "http://localhost:5153/api/Admin/DeleteFood";
+            var model = new
+            {
+                Id = id
+            };
+
+            HttpContent content2 = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response2 = client.PostAsync(URL, content2).Result;
+
+            var result = response2.Content.ReadAsAsync<Restaurants>().Result;
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
