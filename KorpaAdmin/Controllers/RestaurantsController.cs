@@ -302,6 +302,26 @@ namespace KorpaAdmin.Controllers
 
             return View(result);
         }
+        public IActionResult DetailsFood(string id)
+        {
+            HttpClient client = new HttpClient();
+            //added in next aud
+            string URL = "http://localhost:5153/api/Admin/GetDetailsFood";
+            var model = new
+            {
+                Id = id
+            };
+
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.PostAsync(URL, content).Result;
+
+            var result = response.Content.ReadAsAsync<Food_items>().Result;
+
+
+            return View(result);
+        }
+
 
         [HttpPost, ActionName("DeleteFoodConf")]
         [ValidateAntiForgeryToken]
