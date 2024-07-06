@@ -73,7 +73,7 @@ namespace KorpaAdmin.Controllers
                 sb.AppendLine("Product " + item.Food_Items.Name + " has quantity " + item.Quantity + " with price " + item.Food_Items.Price);
                 total += (item.Quantity * item.Food_Items.Price);
             }
-            document.Content.Replace("{{Foo dList}}", sb.ToString());
+            document.Content.Replace("{{FoodList}}", sb.ToString());
             document.Content.Replace("{{TotalPrice}}", total.ToString() + "$");
 
             var stream = new MemoryStream();
