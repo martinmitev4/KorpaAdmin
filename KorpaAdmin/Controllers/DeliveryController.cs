@@ -16,7 +16,7 @@ namespace KorpaAdmin.Controllers
         public IActionResult Index()
         {
             HttpClient client = new HttpClient();
-            string URL = "http://localhost:5153/api/Admin/GetAllOrders";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetAllOrders";
 
             HttpResponseMessage response = client.GetAsync(URL).Result;
             var data = response.Content.ReadAsAsync<List<Delivery_orders>>().Result;
@@ -27,7 +27,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetailsForOrder";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetailsForOrder";
             var model = new
             {
                 Id = id
@@ -48,7 +48,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
 
-            string URL = "http://localhost:5153/api/Admin/GetDetailsForOrder";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetailsForOrder";
             var model = new
             {
                 Id = id

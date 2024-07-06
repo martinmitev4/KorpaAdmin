@@ -12,7 +12,7 @@ namespace KorpaAdmin.Controllers
         public IActionResult Index()
         {
             HttpClient client = new HttpClient();
-            string URL = "http://localhost:5153/api/Admin/GetAllRestaurants";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetAllRestaurants";
 
             HttpResponseMessage response = client.GetAsync(URL).Result;
             var data = response.Content.ReadAsAsync<List<Restaurants>>().Result;
@@ -32,7 +32,7 @@ namespace KorpaAdmin.Controllers
             {
                 HttpClient client = new HttpClient();
                 //added in next aud
-                string URL = "http://localhost:5153/api/Admin/CreateRestaurants";
+                string URL = "https://integriraniproject.azurewebsites.net/api/Admin/CreateRestaurants";
                 var model = restaurants;
 
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -52,7 +52,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetails";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetails";
             var model = new
             {
                 Id = id
@@ -81,7 +81,7 @@ namespace KorpaAdmin.Controllers
             {
                 HttpClient client = new HttpClient();
                 //added in next aud
-                string URL = "http://localhost:5153/api/Admin/EditRestaurant";
+                string URL = "https://integriraniproject.azurewebsites.net/api/Admin/EditRestaurant";
                 var model = restaurants;
 
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -103,7 +103,7 @@ namespace KorpaAdmin.Controllers
 
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetails";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetails";
             var model = new
             {
                 Id = id
@@ -130,7 +130,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetails";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetails";
             var model = new
             {
                 Id = id
@@ -146,7 +146,7 @@ namespace KorpaAdmin.Controllers
 
             HttpClient client2 = new HttpClient();
             //added in next aud
-            string URL2 = "http://localhost:5153/api/Admin/Delete";
+            string URL2 = "https://integriraniproject.azurewebsites.net/api/Admin/Delete";
             var model2 = restaurant;
 
             HttpContent content2 = new StringContent(JsonConvert.SerializeObject(model2), Encoding.UTF8, "application/json");
@@ -169,7 +169,7 @@ namespace KorpaAdmin.Controllers
 
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetails";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetails";
             var model = new
             {
                 Id = id
@@ -193,7 +193,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetMenu";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetMenu";
             var model = new
             {
                 Id = id
@@ -221,7 +221,7 @@ namespace KorpaAdmin.Controllers
             if (ModelState.IsValid)
             {
                 HttpClient client2 = new HttpClient();
-                string URL2 = "http://localhost:5153/api/Admin/CreateFoodItem";
+                string URL2 = "https://integriraniproject.azurewebsites.net/api/Admin/CreateFoodItem";
                 var model2 = food_items;
 
                 HttpContent content2 = new StringContent(JsonConvert.SerializeObject(model2), Encoding.UTF8, "application/json");
@@ -242,7 +242,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetailsFood";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetailsFood";
             var model = new
             {
                 Id = id
@@ -271,7 +271,7 @@ namespace KorpaAdmin.Controllers
             {
                 HttpClient client = new HttpClient();
                 //added in next aud
-                string URL = "http://localhost:5153/api/Admin/EditFood";
+                string URL = "https://integriraniproject.azurewebsites.net/api/Admin/EditFood";
                 var model = food_items;
 
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -287,7 +287,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetailsFood";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetailsFood";
             var model = new
             {
                 Id = id
@@ -306,7 +306,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/GetDetailsFood";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/GetDetailsFood";
             var model = new
             {
                 Id = id
@@ -329,7 +329,7 @@ namespace KorpaAdmin.Controllers
         {
             HttpClient client = new HttpClient();
             //added in next aud
-            string URL = "http://localhost:5153/api/Admin/DeleteFood";
+            string URL = "https://integriraniproject.azurewebsites.net/api/Admin/DeleteFood";
             var model = new
             {
                 Id = id
